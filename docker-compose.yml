@@ -1,5 +1,13 @@
 version: '3'
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_file_server
+    volumes:
+      - ./bundles:/usr/share/nginx/html
+    ports:
+      - "80:80"  # Only accessible from localhost, port 8080
+    restart: unless-stopped
   codepush-redis:
     image: redis:7.2.3
     restart: always
