@@ -15,6 +15,7 @@ services:
       dockerfile: Dockerfile
       args:
       - SERVER_CONFIG=${SERVER_CONFIG}
+      - SERVER_PLATFORM=${SERVER_PLATFORM}
     env_file:
       - .env
     ports:

@@ -15,10 +15,12 @@ RUN apk add --no-cache mariadb-client
 # Add redis
 RUN apk add --no-cache redis
 
+ARG SERVER_PLATFORM
+
 # Add code-push-server-go
 WORKDIR /server
-RUN wget https://github.com/htdcx/code-push-server-go/releases/download/v1.0.5/code-push-server-go_Linux_arm64.tar.gz
-RUN tar -xzf code-push-server-go_Linux_arm64.tar.gz -C /server
+RUN wget https://github.com/htdcx/code-push-server-go/releases/download/v1.0.5/code-push-server-go_Linux_${SERVER_PLATFORM}.tar.gz
+RUN tar -xzf code-push-server-go_Linux_${SERVER_PLATFORM}.tar.gz -C /server
 COPY ./config ./config
 
 ARG SERVER_CONFIG
