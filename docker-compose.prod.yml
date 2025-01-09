@@ -1,0 +1,29 @@
+version: '3'
+services:
+  codepush-redis:
+    image: redis:7.2.3
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - redisdata:/data
+  codepush-go:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+      - SERVER_CONFIG=${SERVER_CONFIG}
+    env_file:
+      - .env
+    ports:
+      - "${DOCKER_PORT}:8080"
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
+volumes:
+  redisdata:
+

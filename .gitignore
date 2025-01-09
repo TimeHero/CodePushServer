@@ -1,5 +1,5 @@
 .env
-/config/**
+/config/*
 /mysql/*
 /bundles/*
 code-push-server-go
